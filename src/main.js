@@ -30,8 +30,6 @@ async function main() {
     var code = rootCodes[i];
     const url = `${BASE_URL}:${code}`;
 
-    console.log('Going to get data from ' + `${BASE_URL}:${code}`);
-
     const html = await axios({
       url
     }).then(res => res.data);
@@ -85,5 +83,5 @@ async function main() {
 
 main().then(res => {
   fs.writeFileSync(RESULT_FILE_NAME, JSON.stringify(res));
-  console.log(res);
+  console.log('DONE');
 });
