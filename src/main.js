@@ -5,6 +5,7 @@ const when = require('when');
 const _ = require('lodash');
 
 const BASE_URL = 'https://en.wikipedia.org/wiki/ISO_3166-2';
+const RESULT_FILE_NAME = 'ISO_3166_2.json';
 
 const cleanUp = (str) => str
   .replace(/\(.*\)/g, '')
@@ -74,7 +75,6 @@ async function main() {
     .iterate(
       (index) => index + 1,
       (index) => index === rootCodes.length,
-      // (index) => index === 3,
       getISO3166SecondLevelData,
       0,
     )
@@ -84,6 +84,6 @@ async function main() {
 }
 
 main().then(res => {
-  fs.writeFileSync('ISO_3166_2.json', JSON.stringify(res));
+  fs.writeFileSync(RESULT_FILE_NAME, JSON.stringify(res));
   console.log(res);
 });
